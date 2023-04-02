@@ -2,7 +2,9 @@ import React from 'react'
 
 const Artists = () => {
   return (
-    <div className='Artists'></div>
+    <div className='Artists'>
+        
+    </div>
   )
 }
 
