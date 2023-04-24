@@ -1,14 +1,16 @@
 import React from 'react'
-import Header from '@components/Header';
+import Navbar from '@components/Navigation';
 import Main from './Main';
 import Artists from './Artists';
+import Footer from '@/components/Footer';
 
 const HomePage = () => {
   return (
-    <div className='HomePage'>
-      <Header/>
+    <div className='HomePage flex flex-col relative '>
+      <Navbar/>
       <Main/>
       <Artists />
+      <Footer />
       </div>
   )
 }
