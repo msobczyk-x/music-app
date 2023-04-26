@@ -2,7 +2,7 @@ import React from "react";
 import "@/styles/Main.css";
 const Main = () => {
   return (
-    <div className="main border-white border-b-2">
+    <div className="main border-white border-b-2 dark">
       <div className="wrapper flex flex-col m-10">
         <div className="flex flex-row border-b border-white py-10 flex-wrap justify-between items-center">
           <div className=" text-6xl w-1/2 flex flex-col">
