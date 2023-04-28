@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM, { createRoot } from 'react-dom/client'
 import './index.css'
 import store from '@utils/store'
 import { Provider } from 'react-redux'
@@ -47,7 +47,9 @@ const router = createBrowserRouter(
   
 
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+  root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -55,4 +57,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </PersistGate>
     </Provider>
   </React.StrictMode>,
+
 );
