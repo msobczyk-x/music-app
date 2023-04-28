@@ -34,7 +34,7 @@ const router = createBrowserRouter(
       errorElement: <ErrorPage />,  
     },
     {
-      path: "/player",
+      path: "/player/*",
       element: ( <AuthGuard><PlayerDashboard /> </AuthGuard>),
       errorElement: <ErrorPage />,
     },

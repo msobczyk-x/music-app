@@ -42,7 +42,6 @@ export default function useAuthentication() {
         try {
             await signOut(auth);
             dispatch(clearUserData());
-            localStorage.removeItem('spotifyApiKey');
             localStorage.removeItem('token');
         } catch (error) {
             console.log(error);

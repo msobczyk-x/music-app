@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 import { RxSpeakerLoud, RxSpeakerOff } from "react-icons/rx";
+import {BsShuffle, BsArrowRepeat} from 'react-icons/bs'
 import './PlayerBar.css'
 type PlayerBarProps = {
   token: string | null;
@@ -13,7 +14,7 @@ function fmtMSS(s:any){return(s-(s%=60))/60+(9<s?':':':0')+s}
 const PlayerBar = ({ token, player }: PlayerBarProps) => {
 
   const [current_track, setTrack] = useState<Spotify.Track | null>(null);
-
+  const [isRepeat, setIsRepeat] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -76,7 +77,10 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
  
 
       <div className="flex flex-col items-center justify-center w-min-[350px]">
-        <div className="buttons flex flex-row items-center justify-center gap-5">
+        <div className="buttons flex flex-row items-center justify-center gap-4">
+          <button className="text-white">
+            {<BsShuffle className="h-4 w-4 hover:text-yellow-400" />}
+          </button>
           <button
             className="text-white"
             onClick={() => {
@@ -84,22 +88,26 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
               player?.previousTrack();
             }}
           >
-            {<GiPreviousButton className="h-6 w-6 hover:text-yellow-400" />}
+            {<GiPreviousButton className="h-5 w-5 hover:text-yellow-400 hover:scale-110" />}
           </button>
           <button className="text-white" onClick={() => player?.togglePlay()}>
             {isPlaying ? (
-              <AiFillPauseCircle className="h-12 w-12 hover:text-yellow-400" />
+              <AiFillPauseCircle className="h-10 w-10 hover:text-yellow-400 hover:scale-110" />
             ) : (
-              <AiFillPlayCircle className="h-12 w-12 hover:text-yellow-400" />
+              <AiFillPlayCircle className="h-10 w-10 hover:text-yellow-400 hover:scale-110" />
             )}
           </button>
           <button className="text-white" onClick={() => player?.nextTrack()}>
-            {<GiNextButton className="h-6 w-6 hover:text-yellow-400" />}
+            {<GiNextButton className="h-5 w-5 hover:text-yellow-400 hover:scale-110" />}
+          </button>
+          <button className="text-white"
+          >
+            {<BsArrowRepeat className="h-4 w-4 hover:text-yellow-400" />}
           </button>
         </div>
         <div className="progress-bar flex flex-row items-center justify-center">
           <p className="text-white pr-2">
-            {fmtMSS(parseInt(progress/1000))}
+            {fmtMSS(Math.trunc(progress/1000))}
           </p>
           <p className="text-white">
             <input type="range" className="sm:w-64 md:w-96 h-1 accent-yellow-400 mb-3 range" min="0" max={duration} onChange={e=> {
@@ -109,13 +117,13 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
 
           </p>
           <p className="text-white pl-2">
-           {fmtMSS(parseInt(duration/1000))}
+           {fmtMSS(Math.trunc(duration/1000))}
           </p>
         </div>
       </div>
       <div className="speaker flex flex-row items-center justify-center ml-4">
         <p className="text-white mr-2">
-          {isMuted ? <RxSpeakerOff className="h-5 w-5 hover:text-yellow-400"/> : <RxSpeakerLoud className="h-5 w-5 hover:text-yellow-400" /> }
+          {isMuted ? <RxSpeakerOff className="h-4 w-4 hover:text-yellow-400"/> : <RxSpeakerLoud className="h-4 w-4 hover:text-yellow-400" /> }
 
         </p>
         <input
