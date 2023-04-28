@@ -51,11 +51,13 @@ export default function useAuthentication() {
         };
     };
 
+
     return {
         isLoading,
         signInCall,
         signUpCall,
         signOutCall,
+
     };
 
     }
