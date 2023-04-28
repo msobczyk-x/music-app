@@ -17,7 +17,7 @@ const PlayerDashboard = () => {
   const [player, setPlayer] = React.useState<Spotify.Player | undefined>(undefined);
   const user = useSelector((state: any) => state.UserSlice.user);
   const [token,setToken] = React.useState(localStorage.getItem("token"));
-
+  const [isLoading, setIsLoading] = React.useState(true);
   const { signOutCall } = useAuthentication();
   const signOut = async () => {
     await signOutCall();
@@ -27,7 +27,8 @@ const PlayerDashboard = () => {
 
   useEffect(() => {
 
-    if(token){
+    try {
+      if(token){
 
     
  /*    const script = document.createElement("script");
@@ -59,6 +60,9 @@ const PlayerDashboard = () => {
 
     };
   }
+    } catch (error) {
+      navigate('/setup-api-key')
+  }
     return () => {
       player?.disconnect();
     };
@@ -71,19 +75,42 @@ const PlayerDashboard = () => {
     }
   });
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+  
+
   return (
-    <div className="flex h-screen w-full dark flex-col">
+    
+    <div className="flex h-screen w-full dark flex-col min-w-[390px]">
+      {(!isLoading) ? (
+        <>
       <Navbar />
-      <div className="grid grid-cols-5 h-full w-full">
+      <div className="flex flex-col sm:grid sm:grid-cols-5 h-full w-full relative">
         <Sidebar />
         <div className="col-span-4">
-          <h1>{token}</h1>
+        
+      
           <MainDashboard />
         </div>
-        <PlayerBar token={token} player={player} />
-      </div>
+   
 
+     
+        <PlayerBar token={token} player={player} />
+   
+      </div>
+      </>
+    ): 
+      <div className="flex flex-col items-center justify-center h-full w-full">
+        <p className="text-white">Loading...</p>
+      </div>
+  
+    }
+    
     </div>
+
   );
 };
 
