@@ -3,13 +3,14 @@ import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 import { RxSpeakerLoud, RxSpeakerOff } from "react-icons/rx";
 import {BsShuffle, BsArrowRepeat} from 'react-icons/bs'
+import fmtMSS from "@/utils/timeUtil";
 import './PlayerBar.css'
 type PlayerBarProps = {
   token: string | null;
   player: Spotify.Player | undefined;
 };
 
-function fmtMSS(s:any){return(s-(s%=60))/60+(9<s?':':':0')+s}
+
 
 const PlayerBar = ({ token, player }: PlayerBarProps) => {
 
@@ -33,11 +34,14 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
         setIsPlaying(!state.paused);
         setIsPaused(state.paused);
         setProgress(state.position);
-
+      
+  
         setDuration(state.track_window.current_track.duration_ms);
       });
     }
   }, [player]);
+
+
 
   useEffect(() => {
     if (isPlaying) {
@@ -56,7 +60,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
             className="h-16 w-16 rounded min-w-[64px]"
             src={current_track.album.images[0].url}
           />
-          <div className="hidden sm:flex flex-col items-start justify-center ml-4">
+          <div className="hidden sm:flex flex-col items-start justify-center ml-4 ">
             <p className="text-white">{current_track.name}</p>
             <p className="text-slate-400 text-xs">{current_track.artists[0].name}</p>
           </div>

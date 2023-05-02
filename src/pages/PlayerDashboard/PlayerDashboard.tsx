@@ -30,12 +30,6 @@ const PlayerDashboard = () => {
     try {
       if(token){
 
-    
- /*    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
-    script.async = true;
-
-    document.body.appendChild(script); */
 
     window.onSpotifyWebPlaybackSDKReady = () => {
 
@@ -60,7 +54,6 @@ const PlayerDashboard = () => {
 
         player.connect();
 
-        
     };
   }
     } catch (error) {

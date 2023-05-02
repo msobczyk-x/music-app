@@ -1,5 +1,6 @@
 import React from 'react'
 import {AiOutlineArrowDown, AiOutlineArrowUp} from 'react-icons/ai'
+import { NavLink } from 'react-router-dom'
 const Sidebar = () => {
   const [playlists, setPlaylists] = React.useState<any>([])
   const [isLoading, setIsLoading] = React.useState(true)
@@ -14,6 +15,7 @@ const Sidebar = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         })
+        
         const data = await response.json()
         setPlaylists(data.items)
         setIsLoading(false)
@@ -22,6 +24,7 @@ const Sidebar = () => {
       }
     }
     fetchPlaylists()
+
   }, [])
 
   return (
@@ -37,9 +40,9 @@ const Sidebar = () => {
       <div className={`sm:flex sm:flex-col items-start justify-start w-full ${(togglePlaylists) ? '':'hidden' } ` } >
       {isLoading? <p>Loading...</p> : playlists.map((playlist: any, index: number) => {
         return (
-          <button key={index} className='flex flex-row items-center justify-start w-full text-zinc-400 truncate mt-2 text-sm'>
+          <NavLink to={`/player/playlist/${playlist.id}`} key={index} className='flex flex-row items-center justify-start w-full text-zinc-400 truncate mt-2 text-sm active:text-white'>
         {playlist.name}
-          </button>
+          </NavLink>
         )
       })
       }
