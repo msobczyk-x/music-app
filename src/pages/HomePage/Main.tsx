@@ -1,8 +1,17 @@
 import React from "react";
 import "@/styles/Main.css";
+import { motion } from "framer-motion";
 const Main = () => {
   return (
-    <div className="main border-white border-b-2 dark">
+    <motion.div className="main border-white border-b-2 dark"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    transition={{
+      duration: 0.8,
+      delay: 0.1,
+      ease: [0, 0.71, 0.2, 1.01]
+    }}
+    >
       <div className="wrapper flex flex-col m-10">
         <div className="flex flex-row border-b border-white py-10 flex-wrap justify-between items-center">
           <div className=" text-6xl w-1/2 flex flex-col">
@@ -47,7 +56,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

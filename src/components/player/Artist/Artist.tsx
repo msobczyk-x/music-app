@@ -30,9 +30,15 @@ const Artist = () => {
 
   return (
     <div>
-        <img src={artist.images[0].url} alt={artist.name}/>
+        {
+            isLoading ? <h1>Loading...</h1> : 
+
+    <>
+     <img src={artist.images[0].url} alt={artist.name}/>
         <h1>{artist.name}</h1>
         <h2>Genres: {artist.genres}</h2>
+    </>
+}
     </div>
   )
 }

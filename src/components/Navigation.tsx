@@ -37,7 +37,7 @@ const Navbar = () => {
             <li>
             <div className="flex gap-5">
               {!user?.email ? (<>
-                <NavLink className="login" to="/login">
+                <NavLink className="login after:border-r-2 after:pr-5 after:border-yellow-400 transition" to="/login">
                   Login
                 </NavLink>
                 <NavLink to="/signup">Signup</NavLink>

@@ -10,6 +10,7 @@ export const SIGN_IN_FORM_INPUTS_ARRAY= [
 
     },
     },
+    type: "email",
 },
 
 {
@@ -18,6 +19,7 @@ export const SIGN_IN_FORM_INPUTS_ARRAY= [
     rules: {
             required: "Password is required",
     },
+    type: "password",
 },
     
 ];
