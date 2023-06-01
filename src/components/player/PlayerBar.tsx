@@ -4,7 +4,7 @@ import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 import { RxSpeakerLoud, RxSpeakerOff } from "react-icons/rx";
 import {BsShuffle, BsArrowRepeat} from 'react-icons/bs'
 import fmtMSS from "@/utils/timeUtil";
-import './PlayerBar.css'
+
 type PlayerBarProps = {
   token: string | null;
   player: Spotify.Player | undefined;
@@ -22,7 +22,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.5);
-
+  const [volumeShown, setVolumeShown] = useState(false);
 
   useEffect(() => {
     if (player) {
@@ -34,7 +34,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
         setIsPlaying(!state.paused);
         setIsPaused(state.paused);
         setProgress(state.position);
-      
+        
   
         setDuration(state.track_window.current_track.duration_ms);
       });
@@ -53,7 +53,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
   }, [isPlaying]);
 
   return (
-    <div className="h-24 flex flex-row items-center justify-between fixed bottom-0 w-screen p-5 border-t-2 z-10 border-zinc-700 bg-zinc-800">
+    <div className={"h-24 flex flex-row items-center justify-between fixed bottom-0 p-5 border-t-2 z-10 border-zinc-700 bg-zinc-800 w-full "}>
       {current_track ?  
         <div className="flex flex-row items-center justify-center w-min-[100px] w-max-[200px]">
           <img
@@ -126,16 +126,17 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
         </div>
       </div>
       <div className="speaker flex flex-row items-center justify-center ml-4">
-        <p className="text-white mr-2">
+        <p className="text-white sm: mr-2" onClick={()=> setVolumeShown(prev => !prev)}>
           {isMuted ? <RxSpeakerOff className="h-4 w-4 hover:text-yellow-400"/> : <RxSpeakerLoud className="h-4 w-4 hover:text-yellow-400" /> }
 
         </p>
         <input
-          className="text-white h-1 accent-yellow-400 range"
+          className={`sm:block sm:static sm:transform-none text-white h-1 accent-yellow-400 range ${volumeShown ? `transform rotate-[270deg] absolute bottom-32 border-amber-500` : `hidden`} `}
           type="range"
           min="0"
           max="100"
           onChange={(e) => player?.setVolume(parseInt(e.target.value) / 100)}
+
         />
       </div>
     </div>

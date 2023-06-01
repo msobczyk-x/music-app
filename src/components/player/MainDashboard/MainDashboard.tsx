@@ -5,16 +5,19 @@ import Playlist from '@/components/player/Playlist/Playlist'
 import React from 'react'
 import { Outlet, Routes, Route } from 'react-router-dom'
 import Artist from '@components/player/Artist/Artist'
+import HomePageDashboard from '@pages/PlayerDashboard/HomePageDashboard'
+import SearchResults from '@pages/PlayerDashboard/SearchResults'
+
 
 const Main = () => {
   return (
-    <div className='flex flex-col items-start p-5 bg-gradient-to-b from-zinc-700 max-w-full h-full'>
+    <div className={`flex flex-col items-start p-5 bg-gradient-to-b from-zinc-700 max-w-full h-full `}>
 
     <Routes>
-      <Route path='/home' element='' errorElement={<ErrorPage/>}/>
-      <Route path='/playlist/:id'
-   
-      element={<Playlist />} errorElement={<ErrorPage/>}/>
+      <Route path='/' element={<HomePageDashboard />} errorElement={<ErrorPage/>}/>
+      <Route path='/playlist/:id' element={<Playlist />} errorElement={<ErrorPage/>}/>
+      <Route path='/search/:query' element={<SearchResults/>} errorElement={<ErrorPage/>}/>
+      
       <Route path='/artist/:id' element={<Artist/>} errorElement={<ErrorPage/>}/>
     </Routes>
     <Outlet/>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import useAuthentication from "@/hooks/useAuthentication";
 import { getAuth } from "firebase/auth";
@@ -11,9 +11,8 @@ import MainDashboard from "@/components/player/MainDashboard/MainDashboard";
 
 
 const PlayerDashboard = () => {
-  const [player, setPlayer] = React.useState<Spotify.Player | undefined>(
-    undefined
-  );
+  const [player, setPlayer] = React.useState<any>(null);
+
   const user = useSelector((state: any) => state.UserSlice.user);
   const [token, setToken] = React.useState(localStorage.getItem("token"));
   const [isLoading, setIsLoading] = React.useState(true);
@@ -25,10 +24,18 @@ const PlayerDashboard = () => {
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
     try {
       if (token) {
+     
         window.onSpotifyWebPlaybackSDKReady = () => {
+          if (window.Spotify.Player) {
+            console.log("Player Ready");
+       
+        
+        }
+        
           const player = new window.Spotify.Player({
             name: "Tunemate Player",
             getOAuthToken: (cb) => {
@@ -38,26 +45,30 @@ const PlayerDashboard = () => {
           });
 
           setPlayer(player);
-
+          console.log(player)
           player.addListener("ready", ({ device_id }) => {
             console.log("Ready with Device ID", device_id);
             localStorage.setItem("device_id", device_id);
+
+
           });
 
           player.addListener("not_ready", ({ device_id }) => {
+            setIsLoading(true);
             console.log("Device ID has gone offline", device_id);
+            
           });
 
           player.connect();
+         
         };
+      
       }
     } catch (error) {
       localStorage.removeItem("token");
       navigate("/setup-api-key");
     }
-    return () => {
-      player?.disconnect();
-    };
+
   }, []);
 
   useEffect(() => {
@@ -73,21 +84,21 @@ const PlayerDashboard = () => {
   }, []);
 
   return (
-    <div className="flex h-screen w-full dark flex-col min-w-[390px] relative">
+    <div className={`flex h-screen w-full dark flex-col min-w-[390px]${isLoading && "overflow-hidden"} `}>
       <>
         <Navbar />
-        <div className="flex flex-col sm:grid sm:grid-cols-5 h-full w-full relative">
+        <div className="flex flex-col sm:grid sm:grid-cols-5 h-full w-full ">
           <Sidebar />
           <div className="col-span-4">
             <MainDashboard />
           </div>
 
-          <PlayerBar token={token} player={player} />
+          {player && <PlayerBar token={token} player={player} />}
         </div>
       </>
 
       {isLoading && (
-        <div className="absolute w-full h-full bg-zinc-900 z-30 opacity-90">
+        <div className="fixed w-full h-full bg-zinc-900 z-30 opacity-90">
           <div
             role="status"
             className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 z-10"

@@ -33,7 +33,7 @@ const handleSubmit = (e: any) => {
     
   return (
 <>
-<button className={`hover:bg-yellow-400  w-10 h-10 p-2 rounded-full flex justify-center items-center ${bgColor && 'bg-yellow-400'}`} onClick={(e)=> { 
+<button className={`hover:bg-yellow-600  w-10 h-10 p-2 rounded-full flex justify-center items-center ${bgColor && 'bg-yellow-400'}`} onClick={(e)=> { 
                 handleSubmit(e)
 }}
                 >{text}</button>
