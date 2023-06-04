@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 
 const HomePage = () => {
   return (
-    <div className='HomePage flex flex-col relative '>
+    <div className='HomePage flex flex-col relative w-full'>
       <Navbar/>
       <Main/>
       <Artists />

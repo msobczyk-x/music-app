@@ -1,9 +1,12 @@
 import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
+import {TiDelete} from 'react-icons/ti'
 import { NavLink } from "react-router-dom";
 import PlayButton from "@components/player/PlayButton";
 import fmtMSS from "@/utils/timeUtil";
-const PlaylistItem = ({ track, index }: any) => {
+const PlaylistItem = ({ track, index, playlistId }: any) => {
+
+
   return (
     <>
       <td className="pr-2">{index}</td>
@@ -31,6 +34,7 @@ const PlaylistItem = ({ track, index }: any) => {
             fmtMSS((Math.trunc(track.duration_ms/1000)))
         }
       </td>
+
     </>
   );
 };

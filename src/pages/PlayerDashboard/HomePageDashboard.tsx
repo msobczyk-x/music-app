@@ -36,7 +36,7 @@ const HomePageDashboard = () => {
         <h1 className='text-3xl font-bold text-white'>Home</h1>
         <Suspense fallback={<div>Loading...</div>}>
 
-        <div className='flex flex-col items-start p-5  max-w-full mb-24'>
+        <div className='flex flex-col items-start p-5  max-w-full mb-24 justify-center'>
             <h1 className='text-2xl font-bold text-white'>Recomendations</h1>
             <div className='flex flex-row flex-wrap'>
                 {recomendations.map((track:any, index:any) => {
@@ -58,7 +58,7 @@ const HomePageDashboard = () => {
         </div>
         <div className='flex flex-col items-start p-5  max-w-full'>
             <h1 className='text-2xl font-bold text-white'>Your Top Artists</h1>
-            <div className='flex flex-row flex-wrap '>
+            <div className='flex flex-row flex-wrap w-full items-start '>
                 {topArtists.map((artist:any, index:any) => {
                     return (
                         <div className='flex flex-col items-center justify-center p-5 m-5 bg-zinc-600 rounded-lg' key={index} onClick={()=> {

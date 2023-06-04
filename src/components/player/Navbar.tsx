@@ -59,7 +59,7 @@ const Navbar = () => {
               aria-labelledby="dropdownDefaultButton"
             >
               <li className="">
-                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full ">
+                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full disabled">
                   <span className="hidden sm:inline">Profile</span>{" "}
                   <CgProfile className="sm:hidden w-5 h-5" />{" "}
                 </button>

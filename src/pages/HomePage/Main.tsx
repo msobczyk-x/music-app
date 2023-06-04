@@ -1,9 +1,9 @@
 import React from "react";
-import "@/styles/Main.css";
+import "@/styles/Main.scss";
 import { motion } from "framer-motion";
 const Main = () => {
   return (
-    <motion.div className="main border-white border-b-2 dark"
+    <motion.div className="main border-white border-b-2 dark w-full"
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     transition={{
@@ -12,8 +12,8 @@ const Main = () => {
       ease: [0, 0.71, 0.2, 1.01]
     }}
     >
-      <div className="wrapper flex flex-col m-10">
-        <div className="flex flex-row border-b border-white py-10 flex-wrap justify-between items-center">
+      <div className="wrapper m-10">
+        <div className="main-box border-b border-white py-10 flex-wrap justify-between items-center">
           <div className=" text-6xl w-1/2 flex flex-col">
             <h1 className="">Listen to your favourite music</h1>
             <span className="font-bold">anytime, <span className="text-yellow-400">anywhere</span></span>

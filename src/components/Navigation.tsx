@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Hamburger from "hamburger-react";
-import "@styles/Navigation.css";
+import "@styles/Navigation.scss";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);

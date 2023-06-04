@@ -20,3 +20,25 @@
      transform: scale(1.1);
 }
 
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper {
+    @include flex-column;
+}
+.main-box {
+    @include flex-row
+}

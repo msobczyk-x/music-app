@@ -8,8 +8,16 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 export default function Signup() {
     const {isLoading, signUpCall} = useAuthentication();
+    const [error, setError] = React.useState('' as any);
    const onSubmit = async (data:any) => {
-    await signUpCall({email: data?.email, password: data?.password})
+    await signUpCall({email: data?.email, password: data?.password}).catch((err:any) => {
+        console.log(err.message)
+        err.message === 'Firebase: Error (auth/email-already-in-use).' ? setError('Email already in use') :
+        err.message === 'Firebase: Error (auth/invalid-email).' ? setError('Invalid email') :
+        err.message === 'Firebase: Error (auth/weak-password).' ? setError('Password should be at least 6 characters') :
+        setError('Something went wrong');
+    }
+    );
    }
 
     return (
@@ -39,6 +47,11 @@ export default function Signup() {
         isLoading={isLoading}
         isSingup={true}
         />
+        {error && (
+        <div className='text-red-500 text-sm mt-2'>
+            {error}
+        </div>
+        )}
         <div className='flex flex-row justify-center items-center gap-2 mt-5'>
         <p className='text-xs font-light text-center '>Already have an account ? </p>
         <Link

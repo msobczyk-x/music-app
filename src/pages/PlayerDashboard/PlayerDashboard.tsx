@@ -17,6 +17,7 @@ const PlayerDashboard = () => {
   const [token, setToken] = React.useState(localStorage.getItem("token"));
   const [isLoading, setIsLoading] = React.useState(true);
   const { signOutCall } = useAuthentication();
+
   const signOut = async () => {
     await signOutCall();
   };
@@ -43,6 +44,7 @@ const PlayerDashboard = () => {
             },
             volume: 0.5,
           });
+ 
 
           setPlayer(player);
           console.log(player)
@@ -67,6 +69,9 @@ const PlayerDashboard = () => {
     } catch (error) {
       localStorage.removeItem("token");
       navigate("/setup-api-key");
+    }
+    return () => {
+      player?.disconnect();
     }
 
   }, []);

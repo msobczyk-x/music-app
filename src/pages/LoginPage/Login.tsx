@@ -10,8 +10,15 @@ import {
 import { NavLink } from "react-router-dom";
 export default function Login() {
   const { isLoading, signInCall } = useAuthentication();
+  const [error, setError] = React.useState("" as any);
   const onSubmit = async (data: any) => {
-    await signInCall({ email: data?.email, password: data?.password });
+    await signInCall({ email: data?.email, password: data?.password }).catch((err:any) => {
+      console.log(err.message)
+      err.message === 'Firebase: Error (auth/user-not-found).' ? setError('User not found') :
+      err.message === 'Firebase: Error (auth/invalid-email).' ? setError('Invalid email') :
+      setError('Something went wrong');
+  }
+  );;
   };
 
   return (
@@ -40,6 +47,11 @@ export default function Login() {
         onSubmit={onSubmit}
         isLoading={isLoading}
       />
+      {error && (
+        <div className='text-red-500 text-sm mt-2'>
+            {error}
+        </div>
+        )}
       <div className="flex flex-row justify-center items-center gap-2 mt-5">
         <p className="text-xs font-light text-center ">
           {" "}

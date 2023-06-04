@@ -23,7 +23,11 @@ const Sidebar = () => {
         setError(true)
       }
     }
-    fetchPlaylists()
+    if (localStorage.getItem('token'))
+    {
+      fetchPlaylists()
+    }
+    
 
   }, [])
 
