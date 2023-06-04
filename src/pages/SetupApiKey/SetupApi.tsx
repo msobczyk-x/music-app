@@ -14,12 +14,9 @@ const SetupApi = () => {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const navigate = useNavigate();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState<any>("");
 
   useEffect(() => {
-
-
-    
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
     if (!token && hash) {
@@ -27,13 +24,11 @@ const SetupApi = () => {
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
+        ?.split("=")[1] || "";
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
     setToken(token);
-  
-    
 
     if (token) {
       navigate("/player");
