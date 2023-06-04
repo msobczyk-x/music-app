@@ -28,28 +28,28 @@ const Main = () => {
         <div className="sponsors flex flex-col sm:flex-row items-center justify-between mx-36 my-10 gap-5">
           <div className="w-16">
             <img
-              src="src/assets/logos/spotify.png"
+              src="/logos/spotify.png"
               alt="spotify-logo"
               className=""
             />
           </div>
           <div className="w-24">
             <img
-              src="src/assets/logos/netflix.png"
+              src="/logos/netflix.png"
               alt="netflix-logo"
               className=""
             />
           </div>
           <div className="w-24">
             <img
-              src="src/assets/logos/verizon.png"
+              src="/logos/verizon.png"
               alt="verizon-logo"
               className=""
             />
           </div>
           <div className="w-24">
             <img
-              src="src/assets/logos/google.png"
+              src="/logos/google.png"
               alt="google-logo"
               className=""
             />

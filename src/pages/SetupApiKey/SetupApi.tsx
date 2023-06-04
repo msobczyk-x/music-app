@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 const SetupApi = () => {
   const CLIENT_ID = "4abcd7b187ea4746b066e52ab0ec4c00";
-  const REDIRECT_URI = "http://localhost:5173/setup-api-key";
+  const REDIRECT_URI = "https://monumental-yeot-cd21ca.netlify.app/setup-api-key";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const navigate = useNavigate();
