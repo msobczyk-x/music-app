@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className='flex flex-row justify-between p-10 flex-wrap'>
+    <footer className='flex flex-row justify-between p-10 flex-wrap border-t-2 border-white'>
         <div className="footer-logo">
                 <h2><span className='font-bold'>Tune</span>mate</h2>
             </div>

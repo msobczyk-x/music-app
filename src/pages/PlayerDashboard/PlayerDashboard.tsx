@@ -98,7 +98,7 @@ const PlayerDashboard = () => {
             <MainDashboard />
           </div>
 
-          {player && <PlayerBar token={token} player={player} />}
+          <PlayerBar token={token} player={player} />
         </div>
       </>
 

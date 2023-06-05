@@ -5,15 +5,7 @@ import { useRouteError, useNavigate } from 'react-router-dom'
 const ErrorPage = () => {
   const error: any = useRouteError();
   console.error(error);
-  const navigate = useNavigate();
-  const user = useSelector (({UserSlice} :any) => UserSlice.user);
-  useEffect(() => {
-    if (user.email) {
-      localStorage.removeItem('token');
-      navigate('/setup-api-key');
-    }
-    
-  }, [])
+
   return (
     <div id="error-page">
       <h1>Oops!</h1>

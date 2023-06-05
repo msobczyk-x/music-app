@@ -14,6 +14,7 @@ import GuestGuard from '@guards/GuestGuard'
 import AuthGuard from './guards/AuthGuard'
 import PlayerDashboard from './pages/PlayerDashboard/PlayerDashboard'
 import SetupApi from './pages/SetupApiKey/SetupApi'
+import ErrorPlayer from './pages/ErrorPlayer'
 
 const persistor = persistStore(store);
 const router = createBrowserRouter(
@@ -36,7 +37,7 @@ const router = createBrowserRouter(
     {
       path: "/player/*",
       element: ( <AuthGuard><PlayerDashboard /> </AuthGuard>),
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPlayer />,
     },
     {
       path: "/setup-api-key",
