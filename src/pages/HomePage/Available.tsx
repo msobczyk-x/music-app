@@ -1,6 +1,6 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-const Artists = () => {
+const Available = () => {
   return (
     <motion.div className='Artists w-full flex items-center justify-center my-24 '
     initial={{opacity:0}}
@@ -23,4 +23,4 @@ animate-gradient-x'>
   )
 }
 
-export default Artists
+export default Available

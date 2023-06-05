@@ -56,7 +56,7 @@ const HomePageDashboard = () => {
                 )}
             </div>
         </div>
-        <div className='flex flex-col items-start p-5  max-w-full'>
+        <div className='flex flex-col items-start p-5  max-w-full mb-24'>
             <h1 className='text-2xl font-bold text-white'>Your Top Artists</h1>
             <div className='flex flex-row flex-wrap w-full items-start '>
                 {topArtists.map((artist:any, index:any) => {

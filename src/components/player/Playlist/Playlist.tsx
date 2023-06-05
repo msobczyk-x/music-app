@@ -106,7 +106,7 @@ const Playlist = ({ playlistId }: any) => {
             </div>
           </header>
 
-          <table className="table-auto border-separate border-spacing-y-4 w-full">
+          <table className="table-auto border-separate border-spacing-y-4 w-full mb-24">
             <thead>
               <tr>
                 <th className="text-left">#</th>
