@@ -8,6 +8,7 @@ import PlayerBar from "@/components/player/PlayerBar";
 import Navbar from "@/components/player/Navbar";
 import Sidebar from "@/components/player/Sidebar/Sidebar";
 import MainDashboard from "@/components/player/MainDashboard/MainDashboard";
+import { TokenProvider } from "@/context/TokenContext";
 
 
 const PlayerDashboard = () => {
@@ -89,7 +90,11 @@ const PlayerDashboard = () => {
   }, []);
 
   return (
+    <TokenProvider>
     <div className={`flex h-screen w-full dark flex-col min-w-[390px]${isLoading && "overflow-hidden"} `}>
+      
+
+      
       <>
         <Navbar />
         <div className="flex flex-col sm:grid sm:grid-cols-5 h-full w-full ">
@@ -128,7 +133,9 @@ const PlayerDashboard = () => {
           </div>
         </div>
       )}
+      
     </div>
+    </TokenProvider>
   );
 };
 

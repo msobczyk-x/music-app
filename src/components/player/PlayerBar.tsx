@@ -55,7 +55,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
 
   
 
-  const toggleShuffle = () => {
+  const toggleShuffle = useCallback(() => {
     if (player) {
       if (isShuffle) {
         fetch(`https://api.spotify.com/v1/me/player/shuffle?state=false&$device_id=${localStorage.getItem('device_id')}`, {
@@ -75,7 +75,7 @@ const PlayerBar = ({ token, player }: PlayerBarProps) => {
         setIsShuffle(true);
       }
     }
-  };
+  },[]);
 
     const toggleRepeat = () => {
       if (player) {
